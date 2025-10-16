@@ -30,6 +30,7 @@ import SettingsPage from '@/components/pages/admin/settings'
 import TradingActivityMonitor from '@/components/admin/TradingActivityMonitor'
 import WalletManagementMonitor from '@/components/admin/WalletManagementMonitor'
 import AdminNotifications from '@/components/admin/AdminNotifications'
+import DIDCreditMonitoring from '@/components/admin/DIDCreditMonitoring'
 
 export default function AdminDashboard() {
   const router = useRouter()
@@ -295,6 +296,7 @@ export default function AdminDashboard() {
     { id: 'assets', label: 'Assets', icon: Package },
     { id: 'trading', label: 'Trading Monitor', icon: TrendingUp },
     { id: 'wallet', label: 'Wallet Management', icon: Wallet },
+    { id: 'did-credit', label: 'DID & Credit', icon: Shield },
     { id: 'notifications', label: 'Notifications', icon: Bell },
     { id: 'rules', label: 'Rules Engine', icon: Shield },
     { id: 'workflow', label: 'Workflow', icon: RotateCcw },
@@ -360,6 +362,12 @@ export default function AdminDashboard() {
       { id: 'deposits', label: 'Deposits' },
       { id: 'withdrawals', label: 'Withdrawals' },
       { id: 'suspended', label: 'Suspended' }
+    ],
+    'did-credit': [
+      { id: 'overview', label: 'Overview' },
+      { id: 'did-activity', label: 'DID Activity' },
+      { id: 'credit-activity', label: 'Credit Activity' },
+      { id: 'analytics', label: 'Analytics' }
     ],
     notifications: [
       { id: 'all', label: 'All Notifications' },
@@ -958,6 +966,8 @@ export default function AdminDashboard() {
         return <TradingActivityMonitor />
       case 'wallet':
         return <WalletManagementMonitor />
+      case 'did-credit':
+        return <DIDCreditMonitoring />
       case 'notifications':
         return <AdminNotifications />
       case 'analytics':

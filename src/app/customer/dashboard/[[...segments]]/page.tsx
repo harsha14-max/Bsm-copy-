@@ -91,6 +91,7 @@ import { supabase } from '@/lib/supabase/client'
 import toast from 'react-hot-toast'
 import WalletTab from '@/components/customer/Wallet'
 import StoreTab from '@/components/customer/Store'
+import DIDManagement from '@/components/customer/DIDManagement'
 
 export default function CustomerDashboard({ params }: { params: { segments?: string[] } }) {
   const router = useRouter()
@@ -315,6 +316,7 @@ export default function CustomerDashboard({ params }: { params: { segments?: str
     { id: 'services', label: 'Services', icon: Monitor },
     { id: 'wallet', label: 'Wallet', icon: CreditCard },
     { id: 'store', label: 'Store', icon: ShoppingBag },
+    { id: 'did', label: 'DID & Credit', icon: Shield },
     { id: 'help', label: 'Help', icon: HelpCircle }
   ]
 
@@ -456,6 +458,7 @@ export default function CustomerDashboard({ params }: { params: { segments?: str
         {activeTab === 'services' && <ServicesContent subTab={activeSubTab} />}
         {activeTab === 'wallet' && <WalletTab />}
         {activeTab === 'store' && <StoreTab />}
+        {activeTab === 'did' && <DIDManagement />}
         {activeTab === 'help' && <HelpContent subTab={activeSubTab} />}
       </div>
     </div>
