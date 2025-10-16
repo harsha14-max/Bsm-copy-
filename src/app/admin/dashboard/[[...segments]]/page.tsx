@@ -6,7 +6,8 @@ import { Button } from '@/components/ui/button'
 import { 
   Home, MessageSquare, Users, Building2, Package, Shield, RotateCcw,
   BarChart3, BookOpen, Plug, Settings, RefreshCw, Download,
-  ChevronDown, ChevronRight, User, Clock, AlertTriangle, CheckCircle, Plus, Search, Filter, Eye, Edit, MoreHorizontal, X, Server, Star, LogOut
+  ChevronDown, ChevronRight, User, Clock, AlertTriangle, CheckCircle, Plus, Search, Filter, Eye, Edit, MoreHorizontal, X, Server, Star, LogOut,
+  TrendingUp, Wallet, Bell, Activity, DollarSign
 } from 'lucide-react'
 import { useAuth } from '@/components/providers/auth-provider'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -24,6 +25,11 @@ import WorkflowPage from '@/components/pages/admin/workflows'
 import KnowledgePage from '@/components/pages/admin/knowledge'
 import IntegrationsPage from '@/components/pages/admin/integrations'
 import SettingsPage from '@/components/pages/admin/settings'
+
+// Import new monitoring components
+import TradingActivityMonitor from '@/components/admin/TradingActivityMonitor'
+import WalletManagementMonitor from '@/components/admin/WalletManagementMonitor'
+import AdminNotifications from '@/components/admin/AdminNotifications'
 
 export default function AdminDashboard() {
   const router = useRouter()
@@ -287,6 +293,9 @@ export default function AdminDashboard() {
     { id: 'users', label: 'Users', icon: Users },
     { id: 'accounts', label: 'Accounts', icon: Building2 },
     { id: 'assets', label: 'Assets', icon: Package },
+    { id: 'trading', label: 'Trading Monitor', icon: TrendingUp },
+    { id: 'wallet', label: 'Wallet Management', icon: Wallet },
+    { id: 'notifications', label: 'Notifications', icon: Bell },
     { id: 'rules', label: 'Rules Engine', icon: Shield },
     { id: 'workflow', label: 'Workflow', icon: RotateCcw },
     { id: 'analytics', label: 'Analytics', icon: BarChart3 },
@@ -335,6 +344,30 @@ export default function AdminDashboard() {
       { id: 'onboarding', label: 'Onboarding' },
       { id: 'offboarding', label: 'Offboarding' },
       { id: 'custom', label: 'Custom Workflows' }
+    ],
+    trading: [
+      { id: 'all', label: 'All Activities' },
+      { id: 'buy-orders', label: 'Buy Orders' },
+      { id: 'sell-orders', label: 'Sell Orders' },
+      { id: 'pending', label: 'Pending Orders' },
+      { id: 'executed', label: 'Executed Orders' },
+      { id: 'failed', label: 'Failed Orders' }
+    ],
+    wallet: [
+      { id: 'all', label: 'All Wallets' },
+      { id: 'transactions', label: 'Transactions' },
+      { id: 'balances', label: 'Balances' },
+      { id: 'deposits', label: 'Deposits' },
+      { id: 'withdrawals', label: 'Withdrawals' },
+      { id: 'suspended', label: 'Suspended' }
+    ],
+    notifications: [
+      { id: 'all', label: 'All Notifications' },
+      { id: 'unread', label: 'Unread' },
+      { id: 'trading', label: 'Trading Alerts' },
+      { id: 'wallet', label: 'Wallet Alerts' },
+      { id: 'security', label: 'Security Alerts' },
+      { id: 'system', label: 'System Alerts' }
     ],
     analytics: [
       { id: 'ticket-analytics', label: 'Ticket Analytics' },
@@ -921,6 +954,12 @@ export default function AdminDashboard() {
         return renderUsersContent()
       case 'accounts':
         return <AccountsPage />
+      case 'trading':
+        return <TradingActivityMonitor />
+      case 'wallet':
+        return <WalletManagementMonitor />
+      case 'notifications':
+        return <AdminNotifications />
       case 'analytics':
         return <AnalyticsPage />
       case 'assets':
